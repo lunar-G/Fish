@@ -19,6 +19,6 @@ urlpatterns = [
     path('AccControl/', views.accControl),
     path('InfoDelete/', views.infoControl),
     path('BuyAndCart/', views.buyAndCart),
-    path('SendMessage/',views.sendMessage),
+    path('SendMessage/', views.sendMessage),
     path('Settlement/', views.settlement)
 ]

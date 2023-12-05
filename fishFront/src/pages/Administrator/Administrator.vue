@@ -127,16 +127,16 @@
 
             <tbody style="font-size: 20px">
 
-            <tr v-for="mer in merchant" :key="mer.id">
-              <td> {{ mer.id }}</td>
-              <td>{{ mer.name }}</td>
-              <td>{{ mer.price }}</td>
+            <tr v-for="item in merchant" :key="item.id">
+              <td> {{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.price }}</td>
               <td>
-                <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="audit(mer.id,'yes',mer.remark)">通过</button>
+                <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="audit(item.id,'yes',item.remark)">通过</button>
                 &nbsp
-                <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="audit(mer.id,'no',mer.remark)">不通过</button>
+                <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="audit(item.id,'no',item.remark)">不通过</button>
               </td>
-              <td><input type="text" placeholder="备注" v-model="mer.remark"></td>
+              <td><input type="text" placeholder="备注" v-model="item.remark"></td>
             </tr>
 
             </tbody>

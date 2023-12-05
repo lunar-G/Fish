@@ -11,6 +11,7 @@ export default {
       sale: [],
       forsale: [],
       stored: [],
+      failed: []
     };
   },
   async mounted() {
@@ -42,6 +43,7 @@ export default {
             this.stored = response.data.data['stored']
             this.finished = response.data.data['finished']
             this.toship = response.data.data['toship']
+            this.failed = response.data.data['failed']
           }).catch(error => {
           })
     }
@@ -87,40 +89,50 @@ export default {
 
                   <tbody style="font-size: 15px">
 
-                  <tr v-for="mer in sale" :key="mer.id">
-                    <td> {{ mer.id }}</td>
-                    <td>{{ mer.name }}</td>
-                    <td>{{ mer.price }}</td>
-                    <td>{{ mer.status }}</td>
+                  <tr v-for="item in sale" :key="item.id">
+                    <td> {{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-success" style="font-size: 15px;height: 30px" @click="control(mer.id , '下架', '商品')">下架</button>
+                      <button type="button" class="btn btn-outline-success" style="font-size: 15px;height: 30px" @click="control(item.id , '下架', '商品')">下架</button>
                     </td>
                   </tr>
 
-                  <tr v-for="mer in forsale" :key="mer.id">
-                    <td> {{ mer.id }}</td>
-                    <td>{{ mer.name }}</td>
-                    <td>{{ mer.price }}</td>
-                    <td>{{ mer.status }}</td>
+                  <tr v-for="item in forsale" :key="item.id">
+                    <td> {{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(mer.id , '撤销', '商品')">撤销</button>
+                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(item.id , '撤销', '商品')">撤销</button>
                     </td>
                   </tr>
 
-                  <tr v-for="mer in stored" :key="mer.id">
-                    <td> {{ mer.id }}</td>
-                    <td>{{ mer.name }}</td>
-                    <td>{{ mer.price }}</td>
-                    <td>{{ mer.status }}</td>
+                  <tr v-for="item in stored" :key="item.id">
+                    <td> {{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(mer.id , '上架', '商品')">上架</button>
+                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(item.id , '上架', '商品')">上架</button>
+                    </td>
+                  </tr>
+
+                  <tr v-for="item in failed" :key="item.id">
+                    <td> {{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td style="color:red">{{ item.status }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(item.id , '上架', '商品')">重新上架</button>
                     </td>
                   </tr>
                   </tbody>
                 </table>
               </div>
 
-              <div id="tab2">
+              <div id="tab2" >
                 <table class="table table-bordered border-primary">
                   <thead>
                   <tr style="font-size: 20px;height: 30px">
@@ -137,30 +149,30 @@ export default {
 
                   <tbody style="font-size: 15px">
 
-                  <tr v-for="mer in toship" :key="mer.id">
-                    <td> {{ mer.id }}</td>
-                    <td>{{ mer.item }}</td>
-                    <td>{{ mer.number }}</td>
-                    <td>{{ mer.price }}</td>
-                    <td>{{ mer.consignee }}</td>
-                    <td>{{ mer.address }}</td>
-                    <td>{{ mer.status }}</td>
+                  <tr v-for="item in toship" :key="item.id">
+                    <td> {{ item.id }}</td>
+                    <td>{{ item.item }}</td>
+                    <td>{{ item.number }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.consignee }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>{{ item.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(mer.id , '发货', '订单')">发货</button>
+                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(item.id , '发货', '订单')">发货</button>
                     </td>
                   </tr>
 
 
-                  <tr v-for="mer in finished" :key="mer.id">
-                    <td> {{ mer.id }}</td>
-                    <td>{{ mer.item }}</td>
-                    <td>{{ mer.number }}</td>
-                    <td>{{ mer.price }}</td>
-                    <td>{{ mer.consignee }}</td>
-                    <td>{{ mer.address }}</td>
-                    <td>{{ mer.status }}</td>
+                  <tr v-for="item in finished" :key="item.id">
+                    <td> {{ item.id }}</td>
+                    <td>{{ item.item }}</td>
+                    <td>{{ item.number }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.consignee }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>{{ item.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(mer.id , '删除', '订单')">删除</button>
+                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(item.id , '删除', '订单')">删除</button>
                     </td>
                   </tr>
                   </tbody>

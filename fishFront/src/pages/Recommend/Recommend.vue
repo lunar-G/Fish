@@ -102,9 +102,9 @@ export default {
           }).catch(error => {
           })
     },
-    async settlement() {
+    async settlement(id) {
       const formData = new FormData();
-      formData.append('username', this.username);
+      formData.append('id', id);
       await axios
           .post('http://127.0.0.1:9999/Settlement/', formData)
           .then(response => {
@@ -618,14 +618,17 @@ export default {
             <div class="card-body" style="width: 600px">
 
               <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="item in this.cart">{{ item.id }}
+                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="item in this.cart">
                   物品：{{ item.item }}&nbsp&nbsp&nbsp&nbsp数量：{{ item.number }}&nbsp&nbsp&nbsp&nbsp共计：{{ item.price }}元
-                  <button class="btn btn-warning" style="font-size: 18px" @click="del(item.id,'购物车')">删除</button>
+                  <div>
+                    <button class="btn btn-success" style="font-size: 18px;margin-right:10px" @click="settlement(item.id)">结算</button>
+                    <button class="btn btn-warning" style="font-size: 18px" @click="del(item.id,'购物车')">删除</button>
+                  </div>
                 </li>
               </ul>
 
             </div>
-            <button class="btn " style="width: 200px;height: 50px;font-size: 20px;background-color: #1cb25d;color: white" @click="settlement">结算</button>
+
           </div>
         </div>
       </div>
@@ -640,7 +643,7 @@ export default {
             <div class="card-body" style="width: 600px">
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center" v-for="o in this.order">
-                  订单id:{{ o.id }}.&nbsp&nbsp&nbsp&nbsp {{ o.item }}×{{ o.number }}&nbsp&nbsp&nbsp&nbsp已支付¥{{ o.price }}
+                  {{ o.item }}×{{ o.number }}&nbsp&nbsp&nbsp&nbsp订单金额&nbsp¥{{ o.price }}
                   <button class="btn btn-danger" @click="del(o.id,'订单')" style="background-color: #45489a;font-size: 18px;">删除</button>
                 </li>
               </ul>

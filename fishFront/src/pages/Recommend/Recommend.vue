@@ -640,8 +640,8 @@ export default {
             <div class="card-body" style="width: 600px">
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center" v-for="o in this.order">
-                  订单id:{{ o.oid }}.&nbsp&nbsp&nbsp&nbsp {{ o.item }}×{{ o.number }}&nbsp&nbsp&nbsp&nbsp已支付¥{{ o.price }}
-                  <button class="btn btn-danger" @click="del(o.oid,'订单')" style="background-color: #45489a;font-size: 18px;">删除</button>
+                  订单id:{{ o.id }}.&nbsp&nbsp&nbsp&nbsp {{ o.item }}×{{ o.number }}&nbsp&nbsp&nbsp&nbsp已支付¥{{ o.price }}
+                  <button class="btn btn-danger" @click="del(o.id,'订单')" style="background-color: #45489a;font-size: 18px;">删除</button>
                 </li>
               </ul>
             </div>

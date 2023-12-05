@@ -137,8 +137,8 @@ export default {
 
                   <tbody style="font-size: 15px">
 
-                  <tr v-for="mer in toship" :key="mer.oid">
-                    <td> {{ mer.oid }}</td>
+                  <tr v-for="mer in toship" :key="mer.id">
+                    <td> {{ mer.id }}</td>
                     <td>{{ mer.item }}</td>
                     <td>{{ mer.number }}</td>
                     <td>{{ mer.price }}</td>
@@ -146,13 +146,13 @@ export default {
                     <td>{{ mer.address }}</td>
                     <td>{{ mer.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(mer.oid , '发货', '订单')">发货</button>
+                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(mer.id , '发货', '订单')">发货</button>
                     </td>
                   </tr>
 
 
-                  <tr v-for="mer in finished" :key="mer.oid">
-                    <td> {{ mer.oid }}</td>
+                  <tr v-for="mer in finished" :key="mer.id">
+                    <td> {{ mer.id }}</td>
                     <td>{{ mer.item }}</td>
                     <td>{{ mer.number }}</td>
                     <td>{{ mer.price }}</td>
@@ -160,7 +160,7 @@ export default {
                     <td>{{ mer.address }}</td>
                     <td>{{ mer.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(mer.oid , '删除', '订单')">删除</button>
+                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(mer.id , '删除', '订单')">删除</button>
                     </td>
                   </tr>
                   </tbody>

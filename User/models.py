@@ -55,7 +55,6 @@ class Commodity(models.Model):
 
 
 class Order(models.Model):
-    oid = models.IntegerField(default=0)
     buyers = models.CharField(max_length=32, default='')
     item = models.CharField(max_length=32, default='')
     number = models.IntegerField(default=0)

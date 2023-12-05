@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a9df4d3-b8c4-4223-b9bd-bdbfb235f6d5" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/User/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/User/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/User/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/User/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fishFront/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fishFront/src/pages/Administrator/Administrator.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/pages/Administrator/Administrator.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fishFront/src/pages/Merchants/Merchants.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/pages/Merchants/Merchants.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fishFront/src/pages/PersonalInfo/PersonalInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/pages/PersonalInfo/PersonalInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fishFront/src/pages/Recommend/Recommend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/pages/Recommend/Recommend.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fishFront/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$LW.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$二改.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$初稿.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +26,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/fishFront" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

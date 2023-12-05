@@ -61,10 +61,10 @@ def getDatas(request):
 
         order = models.Order.objects.filter(buyers=username)
         order = pd.DataFrame.from_records(order.values(), columns=[field.name for field in order.model._meta.fields])
-        order = {'item': order['item'].tolist(), 'number': order['number'].tolist(), 'oid': order['oid'].tolist(),
+        order = {'item': order['item'].tolist(), 'number': order['number'].tolist(), 'id': order['id'].tolist(),
                  'price': order['price'].tolist(), 'status': order['status'].tolist(),
                  'consignee': order['consignee'].tolist(), 'address': order['address'].tolist(), }
-        order = [{'oid': order['oid'][i], 'item': order['item'][i], 'number': order['number'][i],
+        order = [{'id': order['id'][i], 'item': order['item'][i], 'number': order['number'][i],
                   'price': order['price'][i], 'status': order['status'][i],
                   'consignee': order['consignee'][i], 'address': order['address'][i], } for i in range(len(order['address']))]
 
@@ -118,7 +118,7 @@ def delete(request):
         if typee == '购物车':
             Cart.objects.filter(cid=idd).delete()
         else:
-            Order.objects.filter(oid=idd).delete()
+            Order.objects.filter(id=idd).delete()
         return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
 
 
@@ -195,19 +195,19 @@ def getMerchants(request):
 
         finished = models.Order.objects.filter(source=username, status='已完成')
         finished = pd.DataFrame.from_records(finished.values(), columns=[field.name for field in finished.model._meta.fields])
-        finished = {'item': finished['item'].tolist(), 'number': finished['number'].tolist(), 'oid': finished['oid'].tolist(),
+        finished = {'item': finished['item'].tolist(), 'number': finished['number'].tolist(), 'id': finished['id'].tolist(),
                     'price': finished['price'].tolist(), 'status': finished['status'].tolist(),
                     'consignee': finished['consignee'].tolist(), 'address': finished['address'].tolist(), }
-        finished = [{'oid': finished['oid'][i], 'item': finished['item'][i], 'number': finished['number'][i],
+        finished = [{'id': finished['id'][i], 'item': finished['item'][i], 'number': finished['number'][i],
                      'price': finished['price'][i], 'status': finished['status'][i],
                      'consignee': finished['consignee'][i], 'address': finished['address'][i], } for i in range(len(finished['address']))]
 
         toship = models.Order.objects.filter(source=username, status='待发货')
         toship = pd.DataFrame.from_records(toship.values(), columns=[field.name for field in toship.model._meta.fields])
-        toship = {'item': toship['item'].tolist(), 'number': toship['number'].tolist(), 'oid': toship['oid'].tolist(),
+        toship = {'item': toship['item'].tolist(), 'number': toship['number'].tolist(), 'id': toship['id'].tolist(),
                   'price': toship['price'].tolist(), 'status': toship['status'].tolist(),
                   'consignee': toship['consignee'].tolist(), 'address': toship['address'].tolist(), }
-        toship = [{'oid': toship['oid'][i], 'item': toship['item'][i], 'number': toship['number'][i],
+        toship = [{'id': toship['id'][i], 'item': toship['item'][i], 'number': toship['number'][i],
                    'price': toship['price'][i], 'status': toship['status'][i],
                    'consignee': toship['consignee'][i], 'address': toship['address'][i], } for i in range(len(toship['address']))]
 
@@ -287,9 +287,9 @@ def shopControl(request):
             commodity.save()
         elif typee == '订单':
             if oper == '删除':
-                Order.objects.filter(oid=idd).delete()
+                Order.objects.filter(id=idd).delete()
             elif oper == '发货':
-                order = Order.objects.get(oid=idd)
+                order = Order.objects.get(id=idd)
                 order.status = '已完成'
                 order.save()
     return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
@@ -304,7 +304,7 @@ def buyAndCart(request):
         if typee == '购物车':
             Cart.objects.create(user=username, item=commodity.name, price=commodity.price, number=100, cid=5)
         else:
-            Order.objects.create(buyers=username, item=commodity.name, price=commodity.price, number=100, oid=5, source=commodity.source)
+            Order.objects.create(buyers=username, item=commodity.name, price=commodity.price, number=100, id=5, source=commodity.source)
         return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
 
 
@@ -324,5 +324,5 @@ def settlement(request):
         username = request.POST.get('username')
         cart = Cart.objects.filter(user=username)
         for one in cart:
-            Order.objects.create(cid=4, buyers=one.user, number=one.number, item=one.item, price=one.price, address='北京', consignee='lunar', source='shopper', status='待发货')
+            Order.objects.create(buyers=one.user, number=one.number, item=one.item, price=one.price, address='北京', consignee='lunar', source='shopper', status='待发货')
     return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})

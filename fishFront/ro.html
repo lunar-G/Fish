@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>淡水鱼养殖资讯平台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/css/fontAwesome.css">
+    <link rel="stylesheet" href="/static/css/light-box.css">
+    <link rel="stylesheet" href="/static/css/owl-carousel.css">
+    <link rel="stylesheet" href="/static/css/templatemo-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="/static/css/bot5.css" rel="stylesheet">
+    <script src="/static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=WY6BZ-P3TW4-IO5UK-KW26G-4T3RS-EWFLA&libraries=visualization"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .scrollable-div {
+            height: 400px;
+            overflow-y: auto; /* 只允许垂直滚动 */
+        }
+
+        .kp {
+            width: 1000px;
+            height: 200px;
+            border-radius: 15px;
+            background-color: #e0e0e0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: left;
+            font-size: 20px;
+            color: #2c0b0e;
+        }
+    </style>
+</head>
+<body onload="initMap()">
+<div class="sidebar-navigation hidde-sm hidden-xs">
+
+    <div class="logo">
+        <a href="#">淡水鱼 <em>养殖咨询平台</em></a>
+    </div>
+    <nav>
+        <ul>
+            <li style="color: wheat;font-size: 25px">用户名：admin</li>
+            <li style="color: wheat;font-size: 25px">身份类型：管理员</li>
+        </ul>
+    </nav>
+</div>
+
+
+<div class="page-content">
+    <section id="blog" class="content-section">
+
+        <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+            <li><a href="#tab1" class="active">信息管理</a></li>
+            <li><a href="#tab2" class="active">账号管理</a></li>
+            <li><a href="#tab3" class="active">商品审核</a></li>
+            <li><a href="#tab4" class="active">消息回复</a></li>
+        </ul>
+
+        <section id="first-tab-group" class="tabgroup">
+            <div id="tab1" class=scrollable-div>
+                <div class="kp">
+
+                    名称：
+                    <div style="display: inline"> 青鱼</div>
+                    <br>
+                    图片路径：
+                    <div style="display: inline"> C:\Users\DELL\Desktop\Fish\static\image\青鱼.jpg</div>
+                    <br>
+                    详细页网址：
+                    <a style="display: inline" href=" https://baike.baidu.com/item/%E9%9D%92%E9%B1%BC/680135">https://baike.baidu.com/item/%E9%9D%92%E9%B1%BC/680135</a>
+                    <br>
+                    状态：
+                    <div style="display: inline"> 已通过</div>
+                    <br>
+                    操作：
+                    <button type="button" class="btn btn-outline-danger" style="font-size: 15px" name="">删除</button>
+                </div>
+                <br>
+
+                <div class="kp">
+
+                    名称：
+                    <div style="display: inline"> 鲨鱼</div>
+                    <br>
+                    图片路径：
+                    <div style="display: inline"> C:\Users\DELL\Desktop\Fish\static\image\鲨鱼.jpg</div>
+                    <br>
+                    详细页网址：
+                    <a style="display: inline" href="https://baike.baidu.com/item/%E9%B2%A8/19315179">https://baike.baidu.com/item/%E9%B2%A8/19315179</a>
+                    <br>
+                    状态：
+                    <div style="display: inline"> 待审核</div>
+                    <br>
+                    操作：
+                    <button type="button" class="btn btn-outline-primary" style="font-size: 15px" name="">通过</button>
+                    <button type="button" class="btn btn-outline-danger" style="font-size: 15px" name="">不通过</button>
+                </div>
+
+
+            </div>
+
+            <div id="tab2" class=scrollable-div>
+                <table class="table table-hover   text-center">
+                    <thead class="table-primary" style="font-size: 25px">
+                    <tr>
+                        <th>用户名</th>
+                        <th>手机号码</th>
+                        <th>身份类型</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody style="font-size: 20px">
+                    {%for i in user%}
+                    <tr class="">
+                        {%for data in i%}
+                        <td>{{data}}</td>
+                        {%endfor%}
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 20px" name="">密码重置</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 20px" name="">删除</button>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tab3" class=scrollable-div>
+                <table class="table table-hover   text-center">
+                    <thead class="table-primary" style="font-size: 25px">
+                    <tr>
+                        <!--                        <th style="color: white">图片</th>-->
+                        <th>商品名</th>
+                        <th>单价</th>
+                        <th>操作</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+
+                    <tbody style="font-size: 20px">
+
+                    <tr>
+                        <td> 成年青鱼</td>
+                        <td>￥ 5.0</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px">通过</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px">不通过</button>
+                        </td>
+                        <td><input type="text" placeholder="备注"></td>
+                    </tr>
+
+                    <tr>
+                        <td> 鲤鱼鱼苗</td>
+                        <td>￥ 6.0</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px">通过</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px">不通过</button>
+                        </td>
+                        <td><input type="text" placeholder="备注"></td>
+                    </tr>
+
+                    <tr>
+                        <td> 金鱼鱼苗</td>
+                        <td>￥ 7.0</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px">通过</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px">不通过</button>
+                        </td>
+                        <td><input type="text" placeholder="备注"></td>
+                    </tr>
+
+                    <tr>
+                        <td> 锦鲤饲料鱼食</td>
+                        <td>￥ 8.0</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px">通过</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px">不通过</button>
+                        </td>
+                        <td><input type="text" placeholder="备注"></td>
+                    </tr>
+
+                    <tr>
+                        <td> 蝴蝶鲤专用饲料</td>
+                        <td>￥ 9.0</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px">通过</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px">不通过</button>
+                        </td>
+                        <td><input type="text" placeholder="备注"></td>
+                    </tr>
+
+                    <tr>
+                        <td> 草鱼饵料</td>
+                        <td>￥ 10.0</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px">通过</button>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px">不通过</button>
+                        </td>
+                        <td><input type="text" placeholder="备注"></td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="tab4" class=scrollable-div>
+                <table class="table table-hover   text-center">
+                    <thead class="table-primary" style="font-size: 25px">
+                    <tr>
+                        <th>主题</th>
+                        <th>问题</th>
+                        <th>应答</th>
+                        <th>确认</th>
+                    </tr>
+                    </thead>
+
+                    <tbody style="font-size: 20px">
+                    <tr>
+                        <td>青鱼</td>
+                        <td>我家的鱼不吃食了，请问是怎么回事？</td>
+
+                        <td>
+                            <label>
+                                <textarea type="text" placeholder="回复内容" style="font-size: 15px"></textarea>
+                            </label>
+                        </td>
+
+                        <td>
+                            <button type="button" class="btn btn-outline-primary" style="font-size: 20px" name="">回复</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </section>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="/static/js/vendor/bootstrap.min.js"></script>
+<script src="/static/js/plugins.js"></script>
+<script src="/static/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+
+</body>
+</html>

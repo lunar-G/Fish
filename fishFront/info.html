@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淡水鱼养殖资讯平台</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<header class=" text-white text-center py-4" style="background-color: #45489a">
+    <h1>淡水鱼养殖资讯平台</h1>
+</header>
+<main class="container my-4">
+    <section class="user-info">
+        <h2 class="text-center mb-4">个人信息</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="submit_info.php" method="post">
+                    <div class="mb-3">
+                        <label for="province" class="form-label">所在省份:</label>
+                        <input type="text" class="form-control" id="province" name="province" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="area" class="form-label">养殖面积:</label>
+                        <input type="text" class="form-control" id="area" name="area" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="species" class="form-label">养殖品种:</label>
+                        <input type="text" class="form-control" id="species" name="species" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

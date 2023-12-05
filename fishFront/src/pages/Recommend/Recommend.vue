@@ -596,8 +596,8 @@ export default {
               <p class="card-text" style="width: 100px;font-size: 15px">价格: ￥{{ item.price }}</p>
             </div>
             <div>
-              <button class="btn btn-primary" style="width: 100px;font-size: 15px" @click="buyAndCart(item.gid,'购物车')">加入购物车</button>
-              <button class="btn btn-success m-lg-1" style="width: 100px;font-size: 15px" @click="buyAndCart(item.gid,'购买')">直接购买</button>
+              <button class="btn btn-primary" style="width: 100px;font-size: 15px" @click="buyAndCart(item.id,'购物车')">加入购物车</button>
+              <button class="btn btn-success m-lg-1" style="width: 100px;font-size: 15px" @click="buyAndCart(item.id,'购买')">直接购买</button>
             </div>
           </div>
         </div>
@@ -618,9 +618,9 @@ export default {
             <div class="card-body" style="width: 600px">
 
               <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="item in this.cart">{{ item.cid }}
+                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="item in this.cart">{{ item.id }}
                   物品：{{ item.item }}&nbsp&nbsp&nbsp&nbsp数量：{{ item.number }}&nbsp&nbsp&nbsp&nbsp共计：{{ item.price }}元
-                  <button class="btn btn-warning" style="font-size: 18px" @click="del(item.cid,'购物车')">删除</button>
+                  <button class="btn btn-warning" style="font-size: 18px" @click="del(item.id,'购物车')">删除</button>
                 </li>
               </ul>
 

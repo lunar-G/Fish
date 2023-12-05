@@ -87,33 +87,33 @@ export default {
 
                   <tbody style="font-size: 15px">
 
-                  <tr v-for="mer in sale" :key="mer.gid">
-                    <td> {{ mer.gid }}</td>
+                  <tr v-for="mer in sale" :key="mer.id">
+                    <td> {{ mer.id }}</td>
                     <td>{{ mer.name }}</td>
                     <td>{{ mer.price }}</td>
                     <td>{{ mer.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-success" style="font-size: 15px;height: 30px" @click="control(mer.gid , '下架', '商品')">下架</button>
+                      <button type="button" class="btn btn-outline-success" style="font-size: 15px;height: 30px" @click="control(mer.id , '下架', '商品')">下架</button>
                     </td>
                   </tr>
 
-                  <tr v-for="mer in forsale" :key="mer.gid">
-                    <td> {{ mer.gid }}</td>
+                  <tr v-for="mer in forsale" :key="mer.id">
+                    <td> {{ mer.id }}</td>
                     <td>{{ mer.name }}</td>
                     <td>{{ mer.price }}</td>
                     <td>{{ mer.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(mer.gid , '撤销', '商品')">撤销</button>
+                      <button type="button" class="btn btn-outline-danger" style="font-size: 15px;height: 30px" @click="control(mer.id , '撤销', '商品')">撤销</button>
                     </td>
                   </tr>
 
-                  <tr v-for="mer in stored" :key="mer.gid">
-                    <td> {{ mer.gid }}</td>
+                  <tr v-for="mer in stored" :key="mer.id">
+                    <td> {{ mer.id }}</td>
                     <td>{{ mer.name }}</td>
                     <td>{{ mer.price }}</td>
                     <td>{{ mer.status }}</td>
                     <td>
-                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(mer.gid , '上架', '商品')">上架</button>
+                      <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(mer.id , '上架', '商品')">上架</button>
                     </td>
                   </tr>
                   </tbody>

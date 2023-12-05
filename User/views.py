@@ -56,8 +56,8 @@ def getDatas(request):
 
         commodity = models.Commodity.objects.filter(status='在售')
         commodity = pd.DataFrame.from_records(commodity.values(), columns=[field.name for field in commodity.model._meta.fields])
-        commodity = {'gid': commodity['gid'].tolist(), 'name': commodity['name'].tolist(), 'price': commodity['price'].tolist(), 'imgUrl': commodity['imgUrl'].tolist()}
-        commodity = [{'gid': commodity['gid'][i], 'name': commodity['name'][i], 'price': commodity['price'][i], 'imgUrl': commodity['imgUrl'][i]} for i in range(len(commodity['name']))]
+        commodity = {'id': commodity['id'].tolist(), 'name': commodity['name'].tolist(), 'price': commodity['price'].tolist(), 'imgUrl': commodity['imgUrl'].tolist()}
+        commodity = [{'id': commodity['id'][i], 'name': commodity['name'][i], 'price': commodity['price'][i], 'imgUrl': commodity['imgUrl'][i]} for i in range(len(commodity['name']))]
 
         order = models.Order.objects.filter(buyers=username)
         order = pd.DataFrame.from_records(order.values(), columns=[field.name for field in order.model._meta.fields])
@@ -70,8 +70,8 @@ def getDatas(request):
 
         cart = models.Cart.objects.filter(user=username)
         cart = pd.DataFrame.from_records(cart.values(), columns=[field.name for field in cart.model._meta.fields])
-        cart = {'cid': cart['cid'].tolist(), 'number': cart['number'].tolist(), 'item': cart['item'].tolist(), 'price': cart['price'].tolist()}
-        cart = [{'cid': cart['cid'][i], 'number': cart['number'][i], 'item': cart['item'][i], 'price': cart['price'][i]} for i in range(len(cart['price']))]
+        cart = {'id': cart['id'].tolist(), 'number': cart['number'].tolist(), 'item': cart['item'].tolist(), 'price': cart['price'].tolist()}
+        cart = [{'id': cart['id'][i], 'number': cart['number'][i], 'item': cart['item'][i], 'price': cart['price'][i]} for i in range(len(cart['price']))]
 
         message = models.Message.objects.filter(source=username)
         message = pd.DataFrame.from_records(message.values(), columns=[field.name for field in message.model._meta.fields])
@@ -116,7 +116,7 @@ def delete(request):
         typee = request.POST.get('type')
         idd = request.POST.get('id')
         if typee == '购物车':
-            Cart.objects.filter(cid=idd).delete()
+            Cart.objects.filter(id=idd).delete()
         else:
             Order.objects.filter(id=idd).delete()
         return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
@@ -125,8 +125,8 @@ def delete(request):
 def admin(request):
     info = Recommend.objects.all()
     info = pd.DataFrame.from_records(info.values(), columns=[field.name for field in info.model._meta.fields])
-    info = {'rid': info['rid'].tolist(), 'name': info['name'].tolist(), 'imgUrl': info['imgUrl'].tolist(), 'detailUrl': info['detailUrl'].tolist()}
-    info = [{'rid': info['rid'][i], 'name': info['name'][i], 'imgUrl': info['imgUrl'][i], 'detailUrl': info['detailUrl'][i]} for i in range(len(info['detailUrl']))]
+    info = {'id': info['id'].tolist(), 'name': info['name'].tolist(), 'imgUrl': info['imgUrl'].tolist(), 'detailUrl': info['detailUrl'].tolist()}
+    info = [{'id': info['id'][i], 'name': info['name'][i], 'imgUrl': info['imgUrl'][i], 'detailUrl': info['detailUrl'][i]} for i in range(len(info['detailUrl']))]
 
     account = User.objects.all()
     account = pd.DataFrame.from_records(account.values(), columns=[field.name for field in account.model._meta.fields])
@@ -135,13 +135,13 @@ def admin(request):
 
     merchant = Commodity.objects.filter(status='待审核')
     merchant = pd.DataFrame.from_records(merchant.values(), columns=[field.name for field in merchant.model._meta.fields])
-    merchant = {'gid': merchant['gid'].tolist(), 'name': merchant['name'].tolist(), 'price': merchant['price'].tolist(), 'imgUrl': merchant['imgUrl'].tolist()}
-    merchant = [{'gid': merchant['gid'][i], 'name': merchant['name'][i], 'price': merchant['price'][i], 'imgUrl': merchant['imgUrl'][i]} for i in range(len(merchant['name']))]
+    merchant = {'id': merchant['id'].tolist(), 'name': merchant['name'].tolist(), 'price': merchant['price'].tolist(), 'imgUrl': merchant['imgUrl'].tolist()}
+    merchant = [{'id': merchant['id'][i], 'name': merchant['name'][i], 'price': merchant['price'][i], 'imgUrl': merchant['imgUrl'][i]} for i in range(len(merchant['name']))]
 
     message = Message.objects.filter(reply='')
     message = pd.DataFrame.from_records(message.values(), columns=[field.name for field in message.model._meta.fields])
-    message = {'mid': message['mid'].tolist(), 'subject': message['subject'].tolist(), 'info': message['info'].tolist()}
-    message = [{'mid': message['mid'][i], 'subject': message['subject'][i], 'info': message['info'][i]} for i in range(len(message['mid']))]
+    message = {'id': message['id'].tolist(), 'subject': message['subject'].tolist(), 'info': message['info'].tolist()}
+    message = [{'id': message['id'][i], 'subject': message['subject'][i], 'info': message['info'][i]} for i in range(len(message['id']))]
 
     return JsonResponse({"code": 200, "message": " ", 'data': {
         'info': info,
@@ -180,18 +180,18 @@ def getMerchants(request):
         username = request.POST.get('username')
         sale = Commodity.objects.filter(source=username, status='在售')
         sale = pd.DataFrame.from_records(sale.values(), columns=[field.name for field in sale.model._meta.fields])
-        sale = {'gid': sale['gid'].tolist(), 'name': sale['name'].tolist(), 'price': sale['price'].tolist(), 'status': sale['status'].tolist()}
-        sale = [{'gid': sale['gid'][i], 'name': sale['name'][i], 'price': sale['price'][i], 'status': sale['status'][i]} for i in range(len(sale['name']))]
+        sale = {'id': sale['id'].tolist(), 'name': sale['name'].tolist(), 'price': sale['price'].tolist(), 'status': sale['status'].tolist()}
+        sale = [{'id': sale['id'][i], 'name': sale['name'][i], 'price': sale['price'][i], 'status': sale['status'][i]} for i in range(len(sale['name']))]
 
         forsale = Commodity.objects.filter(source=username, status='待审核')
         forsale = pd.DataFrame.from_records(forsale.values(), columns=[field.name for field in forsale.model._meta.fields])
-        forsale = {'gid': forsale['gid'].tolist(), 'name': forsale['name'].tolist(), 'price': forsale['price'].tolist(), 'status': forsale['status'].tolist()}
-        forsale = [{'gid': forsale['gid'][i], 'name': forsale['name'][i], 'price': forsale['price'][i], 'status': forsale['status'][i]} for i in range(len(forsale['name']))]
+        forsale = {'id': forsale['id'].tolist(), 'name': forsale['name'].tolist(), 'price': forsale['price'].tolist(), 'status': forsale['status'].tolist()}
+        forsale = [{'id': forsale['id'][i], 'name': forsale['name'][i], 'price': forsale['price'][i], 'status': forsale['status'][i]} for i in range(len(forsale['name']))]
 
         stored = Commodity.objects.filter(source=username, status='仓库')
         stored = pd.DataFrame.from_records(stored.values(), columns=[field.name for field in stored.model._meta.fields])
-        stored = {'gid': stored['gid'].tolist(), 'name': stored['name'].tolist(), 'price': stored['price'].tolist(), 'status': stored['status'].tolist()}
-        stored = [{'gid': stored['gid'][i], 'name': stored['name'][i], 'price': stored['price'][i], 'status': stored['status'][i]} for i in range(len(stored['name']))]
+        stored = {'id': stored['id'].tolist(), 'name': stored['name'].tolist(), 'price': stored['price'].tolist(), 'status': stored['status'].tolist()}
+        stored = [{'id': stored['id'][i], 'name': stored['name'][i], 'price': stored['price'][i], 'status': stored['status'][i]} for i in range(len(stored['name']))]
 
         finished = models.Order.objects.filter(source=username, status='已完成')
         finished = pd.DataFrame.from_records(finished.values(), columns=[field.name for field in finished.model._meta.fields])
@@ -224,10 +224,10 @@ def getAccount(request):
 
 def reply(request):
     if request.method == 'POST':
-        mid = request.POST.get('mid')
+        id = request.POST.get('id')
         rep = request.POST.get('reply')
-        print(mid, rep)
-        message = Message.objects.get(mid=mid)
+        print(id, rep)
+        message = Message.objects.get(id=id)
         message.reply = rep
         message.save()
     return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
@@ -235,11 +235,11 @@ def reply(request):
 
 def audit(request):
     if request.method == 'POST':
-        gid = request.POST.get('gid')
+        id = request.POST.get('id')
         status = request.POST.get('status')
         remark = request.POST.get('remark')
-        print(gid, status)
-        commodity = Commodity.objects.get(gid=gid)
+        print(id, status)
+        commodity = Commodity.objects.get(id=id)
         if status == 'yes':
             commodity.status = '在售'
         elif status == 'no':
@@ -277,7 +277,7 @@ def shopControl(request):
         oper = request.POST.get('oper')
         typee = request.POST.get('type')
         if typee == '商品':
-            commodity = Commodity.objects.get(gid=idd)
+            commodity = Commodity.objects.get(id=idd)
             if oper == '下架':
                 commodity.status = '仓库'
             elif oper == '撤销':
@@ -300,11 +300,11 @@ def buyAndCart(request):
         typee = request.POST.get('type')
         idd = request.POST.get('id')
         username = request.POST.get('username')
-        commodity = Commodity.objects.get(gid=idd)
+        commodity = Commodity.objects.get(id=idd)
         if typee == '购物车':
-            Cart.objects.create(user=username, item=commodity.name, price=commodity.price, number=100, cid=5)
+            Cart.objects.create(user=username, item=commodity.name, price=commodity.price, number=100)
         else:
-            Order.objects.create(buyers=username, item=commodity.name, price=commodity.price, number=100, id=5, source=commodity.source)
+            Order.objects.create(buyers=username, item=commodity.name, price=commodity.price, number=100, source=commodity.source)
         return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
 
 
@@ -315,7 +315,7 @@ def sendMessage(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         info = request.POST.get('info')
-        Message.objects.create(mid=2, name='白景阳', source=username, subject=subject, email=email, info=info, reply='')
+        Message.objects.create(name='白景阳', source=username, subject=subject, email=email, info=info, reply='')
     return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})
 
 

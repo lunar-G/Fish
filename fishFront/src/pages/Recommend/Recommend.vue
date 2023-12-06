@@ -15,6 +15,8 @@ export default {
       message: [],
       user: [],
       selected: [],
+      medicine: ['敌百虫:0.75克/立方米', '阿维菌素:15毫升/立方米', '伊维菌素:20毫升/立方米', '溴氰菊酯:0.25克/亩', '氯氰菊酯:0.5克/亩',
+        '硫酸铜:0.6克/立方米', '甲苯咪唑:1.0克/立方米', '阿苯达唑:0.1毫克/斤', '辛硫磷:12克/亩'],
       name: '',
       email: '',
       subject: '',
@@ -27,6 +29,7 @@ export default {
       weight: [0, 0],
       one: true,
       two: false,
+      drug: '',
     }
   },
   async mounted() {
@@ -67,12 +70,6 @@ export default {
     },
     goBack() {
       this.$router.push({path: '/'})
-    },
-    add(id) {
-      alert(event.target.parentNode.parentNode.childNodes[1].textContent)
-    },
-    buy(id) {
-      alert(event.target.parentNode.parentNode.childNodes[1].textContent)
     },
     async save() {
       const formData = new FormData();
@@ -150,6 +147,9 @@ export default {
             this.refresh()
           }).catch(error => {
           })
+    },
+    pharmaceuticals(number) {
+      this.drug = this.medicine[number - 1]
     },
     async buyAndCart(id, type) {
       if (type === '购物车') {
@@ -317,7 +317,7 @@ export default {
       </div>
       <div class="section-heading border border-primary" style="height:300px">
         <b-row>
-          <b-col lg="6" style="heitght:250px">
+          <b-col lg="6">
             <b-row style="margin-left:20px;" @change="compute">
               <b-col lg="12">
                 <div class="form-check form-check-inline">
@@ -398,7 +398,44 @@ export default {
           </b-col>
 
           <b-col lg="5" style="margin-left:20px;heitght:250px" class="border">
-            1
+            <div class="dropdown">
+              <button type="button" class="btn btn-danger dropdown-toggle btn-lg" data-bs-toggle="dropdown" aria-expanded="false">
+                药物选择
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(1)">敌百虫</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(2)">阿维菌素</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(3)">伊维菌素</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(4)">溴氰菊酯</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(5)">氯氰菊酯</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(6)">硫酸铜</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(7)">甲苯咪唑</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(8)">阿苯达唑</button>
+                </li>
+                <li>
+                  <button class="dropdown-item" @click="pharmaceuticals(9)">辛硫磷</button>
+                </li>
+
+              </ul>
+            </div>
+            <div style="height:20px"></div>
+            <div style="height:20px;font-size:20px">药物用法:</div>
+            <div style="height:150px;font-size:25px" class="text-info">{{ drug }}</div>
           </b-col>
         </b-row>
       </div>
@@ -628,7 +665,7 @@ export default {
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center" v-for="item in this.order">
                   {{ item.item }}×{{ item.number }}&nbsp&nbsp&nbsp&nbsp订单金额&nbsp¥{{ item.price }}&nbsp&nbsp {{ item.status }}
-                  <button class="btn btn-danger" @click="del(o.id,'订单')" style="background-color: #45489a;font-size: 18px;">删除</button>
+                  <button class="btn btn-danger" @click="del(item.id,'订单')" style="background-color: #45489a;font-size: 18px;">删除</button>
                 </li>
               </ul>
             </div>
@@ -682,7 +719,7 @@ export default {
 
         <div class="section-heading">
           <h1>联系<br><em>我们</em></h1>
-          <p>公司位于湖北省襄阳市湖北理工学院
+          <p>公司位于湖北省襄阳市湖北理工学院文理学院
             <br>您也可以线上发送信息与我们取得联系</p>
         </div>
 

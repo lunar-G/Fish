@@ -317,8 +317,8 @@ export default {
       </div>
       <div class="section-heading border border-primary" style="height:300px">
         <b-row>
-          <b-col lg="6">
-            <b-row style="margin-left:20px" @change="compute">
+          <b-col lg="6" style="heitght:250px">
+            <b-row style="margin-left:20px;" @change="compute">
               <b-col lg="12">
                 <div class="form-check form-check-inline">
                   <input type="radio" id="one" value="20°以上" v-model="temperature" class="form-check-input">
@@ -340,7 +340,7 @@ export default {
                 </div>
 
               </b-col>
-              <b-col lg="3" v-show="one">
+              <b-col lg="3" style="margin-left:50px" v-show="one">
                 <div class="form-check">
                   <input class="form-check-input" type="radio" id="鲤鱼" v-model="oneselected" value="鲤鱼">
                   <label class="form-check-label" for="鲤鱼" style="font-size:15px">鲤鱼</label>
@@ -362,7 +362,7 @@ export default {
                   <label class="form-check-label" for="草鱼" style="font-size:15px"> 草鱼</label>
                 </div>
               </b-col>
-              <b-col lg="3" v-show="two">
+              <b-col lg="3" style="margin-left:50px" v-show="two">
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="鲤鱼" v-model="selected" value="鲤鱼">
                   <label class="form-check-label" for="鲤鱼" style="font-size:15px">鲤鱼</label>
@@ -388,7 +388,7 @@ export default {
             </b-row>
             <b-row style="margin-left:20px">
               <div style="font-size:18px;">
-                <div class="">应投饲料:</div>
+                <h>应投饲料:</h>
                 <div style="display: inline-block;" class="text-primary">膨化料</div>
                 <span class="badge badge-primary"> {{ weight[0] }}斤</span>
                 <div style="display: inline-block;" class="text-primary">颗粒料</div>
@@ -397,8 +397,8 @@ export default {
             </b-row>
           </b-col>
 
-          <b-col lg="6" class="border">
-
+          <b-col lg="5" style="margin-left:20px;heitght:250px" class="border">
+            1
           </b-col>
         </b-row>
       </div>
@@ -410,7 +410,6 @@ export default {
         <p>不同的鱼类有不同的特点
           <br>这里简单说明几种不同淡水鱼的特点</p>
       </div>
-
       <div class="section-content">
         <div class="owl-carousel owl-theme">
 

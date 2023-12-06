@@ -46,8 +46,8 @@ def getDatas(request):
 
         habit = models.Habit.objects.all()
         habit = pd.DataFrame.from_records(habit.values(), columns=[field.name for field in habit.model._meta.fields])
-        habit = {'name': habit['name'].tolist(), 'imgUrl': habit['imgUrl'].tolist(), 'introduce': habit['introduce'].tolist(), 'detailUrl': habit['detailUrl'].tolist()}
-        habit = [{'name': habit['name'][i], 'imgUrl': habit['imgUrl'][i], 'introduce': habit['introduce'][i], 'detailUrl': habit['detailUrl'][i]} for i in range(len(habit['introduce']))]
+        habit = {'id': habit['id'].tolist(), 'name': habit['name'].tolist(), 'imgUrl': habit['imgUrl'].tolist(), 'introduce': habit['introduce'].tolist(), 'detailUrl': habit['detailUrl'].tolist()}
+        habit = [{'id': habit['id'][i], 'name': habit['name'][i], 'imgUrl': habit['imgUrl'][i], 'introduce': habit['introduce'][i], 'detailUrl': habit['detailUrl'][i]} for i in range(len(habit['introduce']))]
 
         illustrated = models.Illustrated.objects.all()
         illustrated = pd.DataFrame.from_records(illustrated.values(), columns=[field.name for field in illustrated.model._meta.fields])

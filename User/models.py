@@ -40,6 +40,8 @@ class Illustrated(models.Model):
     introduce = models.CharField(max_length=2048, default='')
     method = models.CharField(max_length=2048, default='')
     diseasetype = models.CharField(max_length=2048, default='')
+    img1 = models.CharField(max_length=128, default='')
+    img2 = models.CharField(max_length=128, default='')
 
 
 class Commodity(models.Model):

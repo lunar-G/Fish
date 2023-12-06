@@ -18,7 +18,10 @@ export default {
       email: '',
       subject: '',
       info: '',
-    };
+      tab: ['tab1', 'tab2', 'tab3', 'tab4'],
+      type: '',
+      temperature: ''
+    }
   },
   async mounted() {
     this.username = this.$route.query.username
@@ -136,7 +139,7 @@ export default {
           .post('http://127.0.0.1:9999/SendMessage/', formData)
           .then(response => this.refresh()).catch(error => {
           })
-    }
+    },
   },
   computed: {}
 }
@@ -234,11 +237,42 @@ export default {
 
     </div>
   </div>
-
   <div class="page-content">
+
     <section id="projects" class="content-section">
+      <div class="section-heading border" style="height:300px">
+        <div>6
+          <!--          <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px" @click="control(item.id , '上架', '商品')">已开始养殖</button>-->
+          <!--          <button type="button" class="btn btn-outline-primary" style="font-size: 15px;height: 30px;margin-left:20px" @click="control(item.id , '上架', '商品')">未开始养殖</button>-->
+        </div>
+        <div>
+          <b-row style="margin-left:20px">
+            <b-col lg="4" class="border">
+              <input type="radio" id="one" value="混合养殖" v-model="type" style="font-size:10px">
+              <label for="one">混合养殖</label><br/>
+              <input type="radio" id="two" value="单一养殖" v-model="type" style="font-size:10px">
+              <label for="two">单一养殖</label><br/>git commit -m
+            </b-col>
+            <b-col lg="3" class="border">
+              6
+            </b-col>
+            <b-col lg="4" class="border">
+              <input type="radio" id="one" value="20°以上" v-model="temperature" style="font-size:10px">
+              <label for="one">20°以上</label><br/>
+              <input type="radio" id="two" value="20°以下" v-model="temperature" style="font-size:10px">
+              <label for="two">20°以下</label><br/>
+            </b-col>
+
+            <fieldset>
+              <input name="name" type="text" class="form-control" v-model="area" id="name" placeholder="养殖面积" required="" style="width: 200px">
+            </fieldset>
+          </b-row>
+
+        </div>
+      </div>
+
       <div class="section-heading">
-        <h1>养殖<br><em>品种</em></h1>
+        <h1>养殖<br><em>推荐</em></h1>
         <p>我国水产养殖业发达并不成熟，可供我们养殖的品种很多，
           <br>下图分别为鲤鱼、鲫鱼、草鱼、青鱼和鲶鱼，可点击查看详情。</p>
       </div>
@@ -395,6 +429,7 @@ export default {
         <div class="tabs-content">
           <div class="wrapper">
             <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+              <!--              <li v-for="(item,index) in illustrated"><a :href="'#tab'+(1+index)">{{ item.diseasetype }}</a></li>-->
               <li><a href="#tab1" class="active">病毒性疾病</a></li>
               <li><a href="#tab2">细菌性疾病</a></li>
               <li><a href="#tab3">寄生虫性疾病</a></li>
@@ -402,171 +437,195 @@ export default {
             </ul>
 
             <section id="first-tab-group" class="tabgroup">
-
-              <div id="tab1">
+              <div :id="'tab'+(1+index)" v-for="(item,index) in illustrated">
                 <ul>
                   <li>
                     <div class="item">
-                      <img src="/src/assets/image/bd1.jpg" alt="">
+                      <img :src="item.img1" alt="">
                       <div class="text-content">
                         <h4>疾病介绍</h4>
-                        <p class="text-indent text-justify">病毒性疾病指的是由于病毒入侵所造成的疾病，在淡水养殖鱼类中，经常会有病毒性疾病的出
-                          现。举例来说，最容易发生病毒性疾病的物种之一是草鱼，而在众多疾病中，草鱼最容易感染的是出
-                          血病。患上出血病的草鱼，一般其腮部、头顶、眼眶
-                          周围会出现充血的现象，而整个鱼体颜色变暗变
-                          黑。患上出血病的草鱼很容易死去，一般而言，一旦
-                          患上这种病，草鱼的死亡率可达到 70%以上，并且
-                          发病周期短，2~3天内便会死亡。</p>
+                        <p class="text-indent text-justify">{{ item.introduce }}</p>
                       </div>
                     </div>
                   </li>
 
                   <li>
                     <div class="item">
-                      <img src="/src/assets/image/bd2.jpg" alt="">
+                      <img :src="item.img2" alt="">
                       <div class="text-content">
                         <h4>解决方法</h4>
-                        <p class="text-indent text-justify">以病毒性疾病中较为常见的出血病为例，出血病经常发生在草鱼鱼群中，
-                          目前针对这种病症，主要采取的是以预防为主的措
-                          施。如养殖户可以对鱼塘或鱼池进行定期消毒，如
-                          投放生石灰、漂白粉等，或者定期对鱼塘进行清淤，
-                          以保持鱼群生长环境的整洁。此外，在对小鱼苗进
-                          行筛选时，养殖户可以选取更加健康的小鱼苗，并
-                          且在投入鱼塘之前对其进行杀菌处理。</p>
+                        <p class="text-indent text-justify">{{ item.method }}</p>
 
                       </div>
                     </div>
                   </li>
                 </ul>
               </div>
-              <div id="tab2">
-                <ul>
-                  <li>
-                    <div class="item">
-                      <img src="/src/assets/image/xj1.jpg" alt="">
-                      <div class="text-content">
-                        <h4>疾病介绍</h4>
-                        <p class="text-indent text-justify"> 细菌性疾病指的是由于细菌感染而引发的疾
-                          病，在淡水养殖中，一些鱼类也时常面临细菌性疾
-                          病的威胁。如草鱼经常患上细菌性出血病，一旦患
-                          上这种病，草鱼首先会出现轻度出血的症状，如在
-                          口腔、鳍基等部位发生出血；其次一旦病情逐渐变
-                          严重，一些草鱼甚至会出现整个体表出血的症状，
-                          并且腹部也会逐渐膨大开来，某些部位出现红斑
-                          点。此外，鲤和草鱼也非常容易患上烂鳃病，一旦患
-                          上这种病，鱼类首先会出现游动较慢、头部变黑、食
-                          欲下降的症状，而随着病情逐渐变严重，通过对病
-                          鱼鳃部的观察，可以明显看到其鳃部出现泥灰色的
-                          斑点，或者整个鳃部呈蜡黄色。当然，在对细菌性疾
-                          病进行观察时，要将其与一些类似的寄生虫病进行
-                          明显划分。</p>
 
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item">
-                      <img src="/src/assets/image/xj2.jpg" alt="">
-                      <div class="text-content">
-                        <h4>解决方法</h4>
-                        <p class="text-indent text-justify"> 以常见的细菌性疾
-                          病——细菌性出血病为例，一般而言，在发生这种
-                          疾病时，首先要对鱼群进行杀菌处理。此时养殖户
-                          要加强对鱼群的管理，如对使用工具进行杀菌处
-                          理，以及将特殊药物氯立得喷洒在鱼塘周围等。其
-                          次要判定病情的严重程度，如果病情较轻，可以使
-                          用抗暴威来进行治疗，而如果病情严重，则要向鱼
-                          塘投入鱼血康宁，并且适当增加抗暴威的使用量和
-                          使用时长。</p>
+              <!--              <div id="tab1">-->
+              <!--                <ul>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/bd1.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>疾病介绍</h4>-->
+              <!--                        <p class="text-indent text-justify">病毒性疾病指的是由于病毒入侵所造成的疾病，在淡水养殖鱼类中，经常会有病毒性疾病的出-->
+              <!--                          现。举例来说，最容易发生病毒性疾病的物种之一是草鱼，而在众多疾病中，草鱼最容易感染的是出-->
+              <!--                          血病。患上出血病的草鱼，一般其腮部、头顶、眼眶-->
+              <!--                          周围会出现充血的现象，而整个鱼体颜色变暗变-->
+              <!--                          黑。患上出血病的草鱼很容易死去，一般而言，一旦-->
+              <!--                          患上这种病，草鱼的死亡率可达到 70%以上，并且-->
+              <!--                          发病周期短，2~3天内便会死亡。</p>-->
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
 
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div id="tab3">
-                <ul>
-                  <li>
-                    <div class="item">
-                      <img src="/src/assets/image/jsc1.jpg" alt="">
-                      <div class="text-content">
-                        <h4>疾病介绍</h4>
-                        <p class="text-indent text-justify">寄生虫性疾病指的是鱼体内由于出现寄生虫
-                          而引发的常见疾病，常见的寄
-                          生虫性疾病主要有以下几种：
-                          一是粘孢子病，在鲤群内部经常会发生粘孢子病。
-                          发病时，鲤的鱼鳍上会出现一种灰白色的胞囊，一些病鱼的眼睛、肠道等部位也会出现相关的胞囊。
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/bd2.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>解决方法</h4>-->
+              <!--                        <p class="text-indent text-justify">以病毒性疾病中较为常见的出血病为例，出血病经常发生在草鱼鱼群中，-->
+              <!--                          目前针对这种病症，主要采取的是以预防为主的措-->
+              <!--                          施。如养殖户可以对鱼塘或鱼池进行定期消毒，如-->
+              <!--                          投放生石灰、漂白粉等，或者定期对鱼塘进行清淤，-->
+              <!--                          以保持鱼群生长环境的整洁。此外，在对小鱼苗进-->
+              <!--                          行筛选时，养殖户可以选取更加健康的小鱼苗，并-->
+              <!--                          且在投入鱼塘之前对其进行杀菌处理。</p>-->
 
-                          二是指环虫病，在鳙和鲤群中，也会发生指环虫病。
-                          患上这种病的鱼类，其鳃丝上会存在指环虫，而在
-                          吃食物时也很容易出现炸群现象。
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                </ul>-->
+              <!--              </div>-->
+              <!--              <div id="tab2">-->
+              <!--                <ul>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/xj1.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>疾病介绍</h4>-->
+              <!--                        <p class="text-indent text-justify"> 细菌性疾病指的是由于细菌感染而引发的疾-->
+              <!--                          病，在淡水养殖中，一些鱼类也时常面临细菌性疾-->
+              <!--                          病的威胁。如草鱼经常患上细菌性出血病，一旦患-->
+              <!--                          上这种病，草鱼首先会出现轻度出血的症状，如在-->
+              <!--                          口腔、鳍基等部位发生出血；其次一旦病情逐渐变-->
+              <!--                          严重，一些草鱼甚至会出现整个体表出血的症状，-->
+              <!--                          并且腹部也会逐渐膨大开来，某些部位出现红斑-->
+              <!--                          点。此外，鲤和草鱼也非常容易患上烂鳃病，一旦患-->
+              <!--                          上这种病，鱼类首先会出现游动较慢、头部变黑、食-->
+              <!--                          欲下降的症状，而随着病情逐渐变严重，通过对病-->
+              <!--                          鱼鳃部的观察，可以明显看到其鳃部出现泥灰色的-->
+              <!--                          斑点，或者整个鳃部呈蜡黄色。当然，在对细菌性疾-->
+              <!--                          病进行观察时，要将其与一些类似的寄生虫病进行-->
+              <!--                          明显划分。</p>-->
 
-                          三是车轮虫病，在鲤群内部，有时候也会发生车轮虫病。开始时不易察觉，
-                          一旦疾病发展到中期，一些小鱼苗便会出现离开群体、独自狂游的现象，
-                          到了后期，小鱼苗会出现呼吸困难、逐渐窒息的情况。
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/xj2.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>解决方法</h4>-->
+              <!--                        <p class="text-indent text-justify"> 以常见的细菌性疾-->
+              <!--                          病——细菌性出血病为例，一般而言，在发生这种-->
+              <!--                          疾病时，首先要对鱼群进行杀菌处理。此时养殖户-->
+              <!--                          要加强对鱼群的管理，如对使用工具进行杀菌处-->
+              <!--                          理，以及将特殊药物氯立得喷洒在鱼塘周围等。其-->
+              <!--                          次要判定病情的严重程度，如果病情较轻，可以使-->
+              <!--                          用抗暴威来进行治疗，而如果病情严重，则要向鱼-->
+              <!--                          塘投入鱼血康宁，并且适当增加抗暴威的使用量和-->
+              <!--                          使用时长。</p>-->
 
-                          四是锚头鳋病，在草鱼群内部可能会出现锚头鳋病。
-                          一旦患上这种疾病，草鱼鳞片的光泽便会逐渐变淡，
-                          到了中期，鱼体可能会呈现出血的状态，并且伴随着食欲下降、躁动
-                          不安的症状。
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item">
-                      <img src="/src/assets/image/jsc2.jpg" alt="">
-                      <div class="text-content">
-                        <h4>解决方法</h4>
-                        <p class="text-indent text-justify">以淡水养殖鱼类中的
-                          鲤为例，鲤经常患上粘孢子病。在治疗这一疾病时，
-                          首先，人们可以用生石灰对鱼塘进行消毒处理，通
-                          过清洁环境来压迫寄生虫生长的空间。其次，面对
-                          患病严重的鱼群，人们可以使用渔丰碘、菌毒克等
-                          药物对其进行处理，而面对症状较轻的鱼群，则可
-                          以使用晶体敌百虫、孢杀等手段进行处理。</p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div id="tab4">
-                <ul>
-                  <li>
-                    <div class="item">
-                      <img src="/src/assets/image/qt1.jpg" alt="">
-                      <div class="text-content">
-                        <h4>操作粗放</h4>
-                        <p class="text-indent text-justify">有时候，在鱼类捕捞、储存、运输
-                          过程中，人工操作过于粗放。如人们使用带钢叉的
-                          工具来捕捞鱼类，可能会破坏鱼类自身的保护膜，
-                          给鱼体造成伤害，而在面临水中的病原体时，鱼体
-                          造成损伤的鱼类难以抵挡病原体的侵入，从而容易
-                          引发疾病。此外，在运输过程中，一旦人们管理不
-                          当，如将病鱼和健康鱼类混在同一个集装箱里，病
-                          菌就会相互传染，从而使健康鱼类受到病菌侵蚀。</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item">
-                      <img src="/src/assets/image/qt2.jpg" alt="">
-                      <div class="text-content">
-                        <h4>饲养密度</h4>
-                        <p class="text-indent text-justify">在人为因素中，影响鱼类健康的
-                          原因还有饲养密度，饲养密度过大也会对鱼类的健康生长造成威胁。如在水域面积有限的鱼塘之中，
-                          人们投放大量小鱼苗，在鱼苗长大的过程中，彼此
-                          的生活空间会被进一步挤压，从而使鱼类难以获得
-                          应有的游动空间。由于投食有限，鱼类之间对食物
-                          的争夺较为激烈，一些小鱼难以获得充足的食物，
-                          从而影响自身的生长。此外，在鱼群密集的水域，一
-                          旦发生疾病，水域难以稀释相应的病菌，导致鱼类
-                          很容易出现大规模感染的现象。</p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                </ul>-->
+              <!--              </div>-->
+              <!--              <div id="tab3">-->
+              <!--                <ul>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/jsc1.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>疾病介绍</h4>-->
+              <!--                        <p class="text-indent text-justify">寄生虫性疾病指的是鱼体内由于出现寄生虫-->
+              <!--                          而引发的常见疾病，常见的寄-->
+              <!--                          生虫性疾病主要有以下几种：-->
+              <!--                          一是粘孢子病，在鲤群内部经常会发生粘孢子病。-->
+              <!--                          发病时，鲤的鱼鳍上会出现一种灰白色的胞囊，一些病鱼的眼睛、肠道等部位也会出现相关的胞囊。-->
+
+              <!--                          二是指环虫病，在鳙和鲤群中，也会发生指环虫病。-->
+              <!--                          患上这种病的鱼类，其鳃丝上会存在指环虫，而在-->
+              <!--                          吃食物时也很容易出现炸群现象。-->
+
+              <!--                          三是车轮虫病，在鲤群内部，有时候也会发生车轮虫病。开始时不易察觉，-->
+              <!--                          一旦疾病发展到中期，一些小鱼苗便会出现离开群体、独自狂游的现象，-->
+              <!--                          到了后期，小鱼苗会出现呼吸困难、逐渐窒息的情况。-->
+
+              <!--                          四是锚头鳋病，在草鱼群内部可能会出现锚头鳋病。-->
+              <!--                          一旦患上这种疾病，草鱼鳞片的光泽便会逐渐变淡，-->
+              <!--                          到了中期，鱼体可能会呈现出血的状态，并且伴随着食欲下降、躁动-->
+              <!--                          不安的症状。-->
+              <!--                        </p>-->
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/jsc2.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>解决方法</h4>-->
+              <!--                        <p class="text-indent text-justify">以淡水养殖鱼类中的-->
+              <!--                          鲤为例，鲤经常患上粘孢子病。在治疗这一疾病时，-->
+              <!--                          首先，人们可以用生石灰对鱼塘进行消毒处理，通-->
+              <!--                          过清洁环境来压迫寄生虫生长的空间。其次，面对-->
+              <!--                          患病严重的鱼群，人们可以使用渔丰碘、菌毒克等-->
+              <!--                          药物对其进行处理，而面对症状较轻的鱼群，则可-->
+              <!--                          以使用晶体敌百虫、孢杀等手段进行处理。</p>-->
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                </ul>-->
+              <!--              </div>-->
+              <!--              <div id="tab4">-->
+              <!--                <ul>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/qt1.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>操作粗放</h4>-->
+              <!--                        <p class="text-indent text-justify">有时候，在鱼类捕捞、储存、运输-->
+              <!--                          过程中，人工操作过于粗放。如人们使用带钢叉的-->
+              <!--                          工具来捕捞鱼类，可能会破坏鱼类自身的保护膜，-->
+              <!--                          给鱼体造成伤害，而在面临水中的病原体时，鱼体-->
+              <!--                          造成损伤的鱼类难以抵挡病原体的侵入，从而容易-->
+              <!--                          引发疾病。此外，在运输过程中，一旦人们管理不-->
+              <!--                          当，如将病鱼和健康鱼类混在同一个集装箱里，病-->
+              <!--                          菌就会相互传染，从而使健康鱼类受到病菌侵蚀。</p>-->
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                  <li>-->
+              <!--                    <div class="item">-->
+              <!--                      <img src="/src/assets/image/qt2.jpg" alt="">-->
+              <!--                      <div class="text-content">-->
+              <!--                        <h4>饲养密度</h4>-->
+              <!--                        <p class="text-indent text-justify">在人为因素中，影响鱼类健康的-->
+              <!--                          原因还有饲养密度，饲养密度过大也会对鱼类的健康生长造成威胁。如在水域面积有限的鱼塘之中，-->
+              <!--                          人们投放大量小鱼苗，在鱼苗长大的过程中，彼此-->
+              <!--                          的生活空间会被进一步挤压，从而使鱼类难以获得-->
+              <!--                          应有的游动空间。由于投食有限，鱼类之间对食物-->
+              <!--                          的争夺较为激烈，一些小鱼难以获得充足的食物，-->
+              <!--                          从而影响自身的生长。此外，在鱼群密集的水域，一-->
+              <!--                          旦发生疾病，水域难以稀释相应的病菌，导致鱼类-->
+              <!--                          很容易出现大规模感染的现象。</p>-->
+              <!--                      </div>-->
+              <!--                    </div>-->
+              <!--                  </li>-->
+              <!--                </ul>-->
+              <!--              </div>-->
 
 
             </section>
@@ -576,7 +635,6 @@ export default {
       </div>
 
     </section>
-
 
     <section id="buy" class="content-section">
 
@@ -738,7 +796,6 @@ export default {
 
       </div>
     </section>
-
 
   </div>
 </template>

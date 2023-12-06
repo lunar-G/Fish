@@ -51,8 +51,11 @@ def getDatas(request):
 
         illustrated = models.Illustrated.objects.all()
         illustrated = pd.DataFrame.from_records(illustrated.values(), columns=[field.name for field in illustrated.model._meta.fields])
-        illustrated = {'diseasetype': illustrated['diseasetype'].tolist(), 'introduce': illustrated['introduce'].tolist(), 'method': illustrated['method'].tolist()}
-        illustrated = [{'diseasetype': illustrated['diseasetype'][i], 'introduce': illustrated['introduce'][i], 'method': illustrated['method'][i]} for i in range(len(illustrated['introduce']))]
+        illustrated = {'diseasetype': illustrated['diseasetype'].tolist(), 'introduce': illustrated['introduce'].tolist(), 'method': illustrated['method'].tolist(),
+                       'img1': illustrated['img1'].tolist(), 'img2': illustrated['img2'].tolist()}
+        illustrated = [{'diseasetype': illustrated['diseasetype'][i], 'introduce': illustrated['introduce'][i],
+                        'img1': illustrated['img1'][i], 'img2': illustrated['img2'][i],
+                        'method': illustrated['method'][i]} for i in range(len(illustrated['introduce']))]
 
         commodity = models.Commodity.objects.filter(status='在售')
         commodity = pd.DataFrame.from_records(commodity.values(), columns=[field.name for field in commodity.model._meta.fields])
@@ -328,8 +331,11 @@ def sendMessage(request):
 def settlement(request):
     if request.method == 'POST':
         id = request.POST.get('id')
+        print(id)
         cart = Cart.objects.get(id=id)
+        print(cart.item)
+        item = Commodity.objects.get(name=cart.item)
         Order.objects.create(buyers=cart.user, number=cart.number, item=cart.item, price=cart.price,
-                             address='北京', consignee='lunar', source='shopper', status='待发货')
+                             address='北京', consignee='lunar', source=item.source, status='待发货')
         cart = Cart.objects.filter(id=id).delete()
     return JsonResponse({"code": 200, "message": " ", 'data': {'status': 'ok'}})

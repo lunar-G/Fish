@@ -61,7 +61,7 @@ export default {
         <label>账号<input type="text" v-model="this.username"></label><br>
         <label>密码<input type="password" v-model="this.password" @change="check"></label><br>
         <label>确认密码<input type="password" v-model="this.repassword" @change="check"></label><br>
-        <label>手机号码<input type="text" v-model="this.telephone" @change="check"></label>
+        <label>手机号码<input type="text" v-model="this.telephone" ></label>
         <div style="margin-top: -10px">
           <label>身份类型</label>
           <select v-model="identity" style="font-size: 18px;margin-left: 20px;margin-top: 10px">

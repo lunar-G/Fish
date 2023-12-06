@@ -3,9 +3,11 @@
 export default {};
 </script>
 <template>
-  <transition name="router-animation">
-    <router-view/>
-  </transition>
+  <router-view v-slot="{ Component }">
+    <transition>
+      <component :is="Component"/>
+    </transition>
+  </router-view>
 </template>
 <style>
 </style>

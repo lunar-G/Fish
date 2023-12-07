@@ -102,20 +102,20 @@ export default {
         zoom: 15,
       });
       const markerLayer = new TMap.MultiMarker({
-        map: map,  //指定地图容器
+        map: map,
         styles: {
           "myStyle": new TMap.MarkerStyle({
             "width": 25,
-            "height": 35, // 点标记样式高度（像素）
-            "src": '../src/assets/microsoft.png',  //图片路径
+            "height": 35,
+            "src": '../src/assets/microsoft.png',
             "anchor": {x: 16, y: 32}
           })
         },
         geometries: [{
-          "id": "1",   //点标记唯一标识，后续如果有删除、修改位置等操作，都需要此id
-          "styleId": 'myStyle',  //指定样式id
-          "position": new TMap.LatLng(31.945796, 112.082888),  //点标记坐标位置
-          "properties": {//自定义属性
+          "id": "1",
+          "styleId": 'myStyle',
+          "position": new TMap.LatLng(31.945796, 112.082888),
+          "properties": {
             "title": "marker1"
           }
         },]
@@ -622,7 +622,6 @@ export default {
             </div>
           </div>
         </div>
-
 
       </div>
 

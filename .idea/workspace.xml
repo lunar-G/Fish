@@ -7,6 +7,7 @@
     <list default="true" id="4a9df4d3-b8c4-4223-b9bd-bdbfb235f6d5" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fishFront/src/pages/Recommend/Recommend.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/pages/Recommend/Recommend.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fishFront/src/pages/Register/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fishFront/src/pages/Register/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +280,7 @@
       <workItem from="1701842559808" duration="3263000" />
       <workItem from="1701845939435" duration="2228000" />
       <workItem from="1701848425909" duration="3104000" />
-      <workItem from="1701851744825" duration="5747000" />
+      <workItem from="1701851744825" duration="8217000" />
     </task>
     <servers />
   </component>

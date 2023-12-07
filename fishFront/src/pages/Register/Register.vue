@@ -46,7 +46,6 @@ export default {
         } else
           this.isSame = 1
       }
-
     }
   }
 };
@@ -71,7 +70,7 @@ export default {
 
         </div>
 
-        <div v-if="isSame">6666</div>
+        <div v-if="isSame" style="color:red;font-size:15px">密码不一致!!</div>
         <div class="inputDiv">
           <input type="submit" class="button" @click="goBack" value="返回">
           &nbsp
